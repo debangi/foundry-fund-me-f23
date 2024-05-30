@@ -160,3 +160,9 @@ To see how much of our code is actually tested
 ```shell
     $ forge test --fork-url $MAINNET_RPC_URL
 ```
+
+- It will tell me the exact STORAGE layout the fundMe contract has
+
+```shell
+    $ forge inspect FundMe storageLayout
+```

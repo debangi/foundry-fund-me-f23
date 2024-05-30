@@ -41,7 +41,7 @@ contract FundMeTest is Test {
     }
 
     modifier funded() {
-        vm.prank(USER); // foundry cheatcode - creating a fake new address who's gonna send all our transactions
+        vm.prank(USER); // foundry cheatcode - creating a fake new address who's gonna send our next transactions
         fundMe.fund{value: SEND_VALUE}();
         _;
     }
@@ -87,7 +87,7 @@ contract FundMeTest is Test {
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 1;
         for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
-            hoax(address(i), SEND_VALUE);
+            hoax(address(i), SEND_VALUE); // foundry cheatcode - sets up a prank from an address that has some ether (both prank and deal combined)
             fundMe.fund{value: SEND_VALUE}();
         }
 
