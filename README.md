@@ -71,7 +71,7 @@ $ cast --help
 contract FundMeTest is Test {}
 ```
 
-1. deploy contract
+- deploy contract
 
 ```shell
  function setUp() external {
@@ -79,7 +79,7 @@ contract FundMeTest is Test {}
  }
 ```
 
-2. Test
+- Test
 
 ```shell
 function testMinimumDollarIsFive() public {
@@ -95,7 +95,7 @@ forge test -vv
 
 -vv: This flag increases the verbosity level of the output. In many command-line tools, -v stands for verbose mode, which provides detailed output about the operations being performed. Adding an additional v makes the output even more detailed. In the context of forge test, this means you'll see more information about each test that runs, including potentially more detailed error messages if any tests fail.
 
-3. Deploy Script - a seperate deploy script is necessary for security and best practices.
+- Deploy Script - a seperate deploy script is necessary for security and best practices.
 
 ```shell
 contract DeployFundMe is Script {
@@ -110,7 +110,7 @@ contract DeployFundMe is Script {
 }
 ```
 
-4. Running a specific Test
+- Running a specific Test
 
 ```shell
     $ forge test -m testPriceFeedVersionIsAccurate -vvv
@@ -145,3 +145,18 @@ $ forge coverage
 ```
 
 To see how much of our code is actually tested
+
+- We want to make our deployments modular, with different addresses of different chains so w dont have to write seperate code for running in on diffrent chains.
+
+- _mocks_ refer to simplified versions of external contracts that your main contract interacts with during testing. These mock contracts replicate the interface and behavior of the actual external contracts but are used exclusively for testing purposes. The primary goal of using mocks is to isolate the behavior of the contract under test from the complexities and unpredictabilities of interacting with real external contracts or services.
+
+- In helper config :
+
+1.  Deploy mocks when we are on a local anvil chain
+2.  Keep track of contract address across different chains
+
+- To run test on a forked mainnet
+
+```shell
+    $ forge test --fork-url $MAINNET_RPC_URL
+```
