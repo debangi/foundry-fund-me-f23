@@ -11,6 +11,8 @@ contract FundFundMe is Script {
     function fundFundMe(address mostRecentlyDeployed) public {
         vm.startBroadcast();
         FundMe(payable(mostRecentlyDeployed)).fund{value: SEND_VALUE}();
+        // yourContract.fund{value: msg.value}() is a hypothetical invocation of a .fund{} function that accepts ether sent with the transaction.
+        //  .fund{} is a utility function used for funding or initializing contracts with test tokens or ether for testing purposes.
         vm.stopBroadcast();
         console.log("Funded FundMe with %s", SEND_VALUE);
     }

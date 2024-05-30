@@ -166,3 +166,5 @@ To see how much of our code is actually tested
 ```shell
     $ forge inspect FundMe storageLayout
 ```
+
+- For interacting with our contract programatically, we created a script - Interactions.s.sol
