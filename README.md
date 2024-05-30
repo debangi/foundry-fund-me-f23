@@ -109,3 +109,10 @@ contract DeployFundMe is Script {
     }
 }
 ```
+
+4. Running a specific Test
+   ```shell
+    forge test -m testPriceFeedVersionIsAccurate -vvv
+   ```
+   The -m option specifies a tag or a name of the test(s) to run. In this case, testPriceFeedVersionIsAccurate is the identifier for the specific test you want to execute.
+   'testPriceFeedVersionIsAccurate' calls a contract that doesn't exist and hence the test fails( when we dont pass an RPC url, foundry spins up an anvil chain and closes it after its action is done). for the test to pass, we need to pass an RPC url
