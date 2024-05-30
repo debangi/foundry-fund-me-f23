@@ -168,3 +168,5 @@ To see how much of our code is actually tested
 ```
 
 - For interacting with our contract programatically, we created a script - Interactions.s.sol
+
+- A makefile is a simple text file used by the utility called `make` to automate the process of building and compiling programs or projects.
