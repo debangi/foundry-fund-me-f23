@@ -111,8 +111,37 @@ contract DeployFundMe is Script {
 ```
 
 4. Running a specific Test
-   ```shell
-    forge test -m testPriceFeedVersionIsAccurate -vvv
-   ```
-   The -m option specifies a tag or a name of the test(s) to run. In this case, testPriceFeedVersionIsAccurate is the identifier for the specific test you want to execute.
-   'testPriceFeedVersionIsAccurate' calls a contract that doesn't exist and hence the test fails( when we dont pass an RPC url, foundry spins up an anvil chain and closes it after its action is done). for the test to pass, we need to pass an RPC url
+
+```shell
+    $ forge test -m testPriceFeedVersionIsAccurate -vvv
+```
+
+The -m option specifies a tag or a name of the test(s) to run. In this case, testPriceFeedVersionIsAccurate is the identifier for the specific test you want to execute.
+'testPriceFeedVersionIsAccurate' calls a contract that doesn't exist and hence the test fails( when we dont pass an RPC url, foundry spins up an anvil chain and closes it after its action is done). for the test to pass, we need to pass an RPC url
+
+### There are 4 diffrent types of tests
+
+1. Unit
+   - testing a specific part of our code
+2. Integration
+   - Testing how our code works with other parts of our code
+3. Forked
+   - Testing our code on a simulated real environment
+4. Staging
+   - Testing our code in a real environment that is not prod
+
+#### Forked Testing
+
+```shell
+    $ forge test -m testPriceFeedVersionIsAccurate -vvv --fork-url $SEPOLIA_RPC_URL
+```
+
+Anvil will get spun up but it will take a copy of the sepolia_rpc_url, and will simulate all of our transactions as if they are running actually on the sepolia chain. So it will pretend to deploy and read from the sepolia chain as opposed to a completely blank chain.
+
+### Coverage
+
+```shell
+$ forge coverage
+```
+
+To see how much of our code is actually tested
