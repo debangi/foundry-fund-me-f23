@@ -155,7 +155,7 @@ To see how much of our code is actually tested
 1.  Deploy mocks when we are on a local anvil chain
 2.  Keep track of contract address across different chains
 
-- To run test on a forked mainnet
+- To run test on a forked chain
 
 ```shell
     $ forge test --fork-url $MAINNET_RPC_URL

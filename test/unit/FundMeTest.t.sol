@@ -8,7 +8,7 @@ import {DeployFundMe} from "./../../script/DeployFundMe.s.sol";
 contract FundMeTest is Test {
     FundMe fundMe;
 
-    address USER = makeAddr("user");
+    address USER = makeAddr("user"); // makeAddr is a foundry cheatcode that returns a new address when we pass a name
     uint256 constant SEND_VALUE = 0.1 ether;
     uint256 constant STARTING_BALANCE = 10 ether;
     uint256 constant GAS_PRICE = 1;
@@ -17,7 +17,7 @@ contract FundMeTest is Test {
         // fundMe = new FundMe(0x694AA1769357215DE4FAC081bf1f309aDC325306);
         DeployFundMe deployFundMe = new DeployFundMe();
         fundMe = deployFundMe.run();
-        vm.deal(USER, STARTING_BALANCE);
+        vm.deal(USER, STARTING_BALANCE); // deal is a foundry cheatcode - allows us to set the balance of a new address
     }
 
     function testMinimumDollarIsFive() public {
@@ -36,12 +36,12 @@ contract FundMeTest is Test {
     }
 
     function testFundFailsWithoutEnoughETH() public {
-        vm.expectRevert();
-        fundMe.fund();
+        vm.expectRevert(); // foundry cheatcode to revert the next line
+        fundMe.fund(); // if this line fails, the test passes
     }
 
     modifier funded() {
-        vm.prank(USER);
+        vm.prank(USER); // foundry cheatcode - creating a fake new address who's gonna send all our transactions
         fundMe.fund{value: SEND_VALUE}();
         _;
     }
